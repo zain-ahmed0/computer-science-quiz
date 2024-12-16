@@ -1,0 +1,154 @@
+Register:
+graph TD
+    A(Start) --> B[/Input for account details/]
+    B --> C[Get cleaned entries for first_name, last_name, username, email]
+    C --> D[/Get entry for password/]
+    D --> E[/Get choice for role/]
+    E --> F[Validate inputs]
+    F --> |Valid| G[Check uniqueness in Database]
+    G --> |Unique| H[Insert user in Database]
+    H --> |Success| I[/Output Account created/]
+    H --> |Unsuccessful| J[/Output Error/]
+    F --> |Not Unique| J
+    E --> |Invalid| J
+    I --> K(End)
+    J --> K
+
+Login:
+graph TD
+    A(Start) --> B[Get input for login details]
+    B --> C{Check if not empty}
+    C -->|Yes| D[Execute SQL to verify user]
+    D -->|Result Found| E[/Output success message/]
+    E --> F[Execute SQL to get user role]
+    F --> G[Set global variables]
+    G --> H[[Swap to User Menu]]
+    D -->|No Result| J[/Output Error/]
+    C -->|No| J
+    H --> K(End)
+    J --> K
+
+Forgot Password:
+graph TD
+    A(Start) --> B[/Input email and new password/]
+    B --> C{Check if email and new password follow validation rules}
+    C -->|Valid| D{Check if email in DB}
+    D -->|Exists| E[Update password in DB]
+    E --> F[/Output Password changed/]
+    D -->|Does Not Exist| I[/Output Error/]
+    C -->|Invalid| I
+    F --> G(End)
+    I --> G
+
+Quiz Settings:
+graph TD
+    A(Start) --> B[Initialise quiz topics dictionary]
+    B --> C[Set global variables]
+    C --> D{Iterate over quiz topics}
+    D -->|Topic selected| E[Check Selections]
+    E --> F[Add to quiz chosen topics]
+    E --> |Invalid| G[/Output Error/]
+    F -->|Valid| H[Execute SQL to fetch questions]
+    H --> I[[Swap to Quiz Game Menu]]
+    I --> K(End)
+    G --> K
+
+Choice Colour:
+graph TD
+    A(Start) --> B[Get difficulty_level_choice]
+    B --> C{Check Level}
+    C -->|Easy| D[/GREEN/]
+    C -->|Medium| E[/ORANGE/]
+    C -->|Hard| F[/RED/]
+    D --> G(End)
+    E --> G
+    F --> G
+
+Load First Question:
+graph TD
+    A(Start) --> B[Initialise/reset variables]
+    B --> C[Set count, current_score, questions_correct_count, questions_incorrect_count to 0]
+    C --> D[Reset question, answer, option_1, option_2, option_3, option_4, and check to None]
+    D --> E[Load first question details from questions list]
+    E --> F[Assign question text and options]
+    F --> G(End)
+
+Next Question:
+graph TD
+    A(Start) --> B{Check if answer checked}
+    B -->|True| C[Increment question count]
+    C --> D[Reset UI elements]
+    D --> E{Check for more questions}
+    E -->|Yes| F[Load next question details]
+    F --> G[Update UI with next question]
+    G --> H[Reset check variable]
+    E -->|No| I[Update score in DB and switch to end menu]
+    B -->|False| J[/Output Error/]
+    H --> K(End)
+    I --> K
+    J --> K
+
+Check Answer:
+graph TD
+    A(Start) --> B{Determine selected choice}
+    B --> C{Check if exactly one option selected}
+    C -->|Valid| D{Compare selected choice with answer}
+    D -->|Correct| E[Play correct answer sound]
+    E --> F[Update score and correct count]
+    F --> G[Update UI for correct answer]
+    D -->|Incorrect| H[Play incorrect answer sound]
+    H --> I[Update incorrect count]
+    I --> J[Update UI for incorrect answer]
+    C -->|Invalid| K[/Output Error/]
+    G --> L(End)
+    J --> L
+    K --> L
+
+Leaderboard:
+graph TD
+    A(Start) --> B[Execute SQL query to fetch top 10 scores]
+    B --> C[Initialise global variables]
+    C --> D{Iterate through query results}
+    D --> E[Assign values to variables]
+    E -->|Next Row| D
+    D --> F(End)
+
+Change Appearance Theme:
+graph TD
+    A(Start) --> B{Evaluate choice}
+    B -->|Dark Mode| C[DARK]
+    B -->|System Mode| D[SYSTEM]
+    B -->|Light Mode| E[LIGHT]
+    C --> F(End)
+    D --> F
+    E --> F
+
+Change Colour Theme:
+graph TD
+    A(Start) --> B{Evaluate choice}
+    B -->|Dark Blue| C[DARK BLUE]
+    B -->|Blue| D[BLUE]
+    B -->|Green| E[GREEN]
+    C --> F(End)
+    D --> F
+    E --> F
+
+Sound:
+graph TD
+    A(Start) --> B{Check toggle_sound_choice}
+    B -->|Disable| C[DISABLE SOUND]
+    B -->|Enable| D[ENABLE SOUND]
+    C --> E(End)
+    D --> E
+
+Swap to Login Menu:
+graph TD
+    A(Start) --> B[Remove Login Menu Label's and Frames]
+    B --> C[Display User Menu Label's and Frames]
+    C --> D(End)
+
+Swap to Quiz Game Menu Menu:
+graph TD
+    A(Start) --> B[Remove Quiz Settings Menu Label's and Frames]
+    B --> C[Display Quiz Game Menu Label's and Frames]
+    C --> D(End)
