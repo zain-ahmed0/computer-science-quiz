@@ -1,6 +1,6 @@
 # Computer Science Quiz Project
 
-This project was developed as part of my A-Level Computer Science coursework for the [OCR H446]((https://www.ocr.org.uk/images/170844-specification-accredited-a-level-gce-computer-science-h446.pdf)) specification.
+This project was developed as part of my A-Level Computer Science coursework for the [OCR H446](https://www.ocr.org.uk/images/170844-specification-accredited-a-level-gce-computer-science-h446.pdf) specification.
 
 ## Requirements
 
