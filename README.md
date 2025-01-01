@@ -12,11 +12,11 @@ This project was developed as part of my A-Level Computer Science coursework for
 
 ## Installation
 
-1. Clone the repository to your local machine using git:
+1. Download the latest version of Python 3.13.1 from the [official Python website](https://www.python.org/downloads/)
+
+2. Clone the repository to your local machine using git:
     ```bash 
     git clone https://github.com/zain-a0/computer_science_quiz.git
-
-2. Download the latest version of Python (3.13.1)
 
 3. Install the required packages by running:
     ```bash
