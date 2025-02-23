@@ -16,7 +16,7 @@ This project was developed as part of my A-Level Computer Science coursework for
 
 2. Clone the repository to your local machine using git:
     ```bash 
-    git clone https://github.com/zain-a0/computer_science_quiz.git
+    git clone https://github.com/zain-a0/gcse-computer-science-quiz.git
 
 3. Install the required packages by running:
     ```bash
